@@ -1,0 +1,46 @@
+:root {
+  /* Base — deep navy/black */
+  --bg-base: #07090f;
+  --bg-panel: #0d1119;
+  --bg-elevated: #131826;
+  --bg-glass: rgba(13, 17, 25, 0.6);
+
+  /* Borders */
+  --border-subtle: rgba(120, 160, 220, 0.08);
+  --border-default: rgba(120, 160, 220, 0.16);
+  --border-strong: rgba(120, 160, 220, 0.32);
+  --border-glow: rgba(96, 196, 255, 0.4);
+
+  /* Text */
+  --text-primary: #e8eef7;
+  --text-secondary: #97a3b8;
+  --text-tertiary: #5d6a82;
+  --text-muted: #3d4759;
+
+  /* Accent — cyan-blue */
+  --accent: #60c4ff;
+  --accent-bright: #8ed8ff;
+  --accent-dim: #3a8fc4;
+  --accent-glow: rgba(96, 196, 255, 0.5);
+
+  /* Semantic */
+  --warn: #ffb454;
+  --warn-glow: rgba(255, 180, 84, 0.4);
+  --success: #4fd6a3;
+  --note-yellow: #f5e6a3;
+  --note-yellow-bg: rgba(245, 230, 163, 0.08);
+
+  /* Math viz palette (3Blue1Brown-inspired, tuned for dark navy) */
+  --viz-blue: #67a9ff;
+  --viz-yellow: #ffd966;
+  --viz-red: #ff7b6b;
+  --viz-green: #6fd49a;
+  --viz-purple: #b896ff;
+  --viz-grid: rgba(120, 160, 220, 0.08);
+  --viz-axis: rgba(180, 200, 230, 0.24);
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
