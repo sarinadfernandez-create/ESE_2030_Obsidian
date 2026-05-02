@@ -109,6 +109,7 @@ Three traps to watch for:
 
     problems: [
       {
+        format: 'open' as const,
         id: 'P-7.3a',
         difficulty: 2,
         statement: 'Show that if $v$ is an eigenvector of $A$ with eigenvalue $\\lambda$, then $v$ is also an eigenvector of $A^2$. What is the corresponding eigenvalue?',
@@ -138,6 +139,7 @@ Three traps to watch for:
         ],
       },
       {
+        format: 'open' as const,
         id: 'P-7.3b',
         difficulty: 2,
         statement: 'Suppose $A$ is invertible with eigenvector $v$ and eigenvalue $\\lambda$. Show that $v$ is an eigenvector of $A^{-1}$, and find the corresponding eigenvalue.',
@@ -167,6 +169,7 @@ Three traps to watch for:
         ],
       },
       {
+        format: 'open' as const,
         id: 'P-7.3c',
         difficulty: 3,
         statement: 'Let $A$ be a $3 \\times 3$ matrix with $\\operatorname{tr}(A) = 6$ and $\\det(A) = 6$. If $\\lambda_1 = 1$ is one eigenvalue, find the other two.',
@@ -174,6 +177,7 @@ Three traps to watch for:
         hasAnimatedSolution: false,
       },
       {
+        format: 'open' as const,
         id: 'P-7.3d',
         difficulty: 1,
         statement: 'Find all eigenvalues and eigenvectors of $A = \\begin{pmatrix} 0 & 1 \\\\ 1 & 0 \\end{pmatrix}$.',

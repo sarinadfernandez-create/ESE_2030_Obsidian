@@ -130,7 +130,17 @@ export function extractConceptBacklinks(concept: Concept): ConceptMention[] {
     });
     concept.practice.problems.forEach((p, i) => {
       fields.push({ text: p.statement, location: `practice.problems[${i}].statement` });
-      if (p.hint) fields.push({ text: p.hint, location: `practice.problems[${i}].hint` });
+      if (p.format === 'open' && p.hint)
+        fields.push({ text: p.hint, location: `practice.problems[${i}].hint` });
+      if (p.format === 'multiple-choice') {
+        p.choices.forEach((c, j) =>
+          fields.push({ text: c.body, location: `practice.problems[${i}].choices[${j}]` })
+        );
+        fields.push({
+          text: p.solution.explanation,
+          location: `practice.problems[${i}].solution.explanation`,
+        });
+      }
     });
   }
 

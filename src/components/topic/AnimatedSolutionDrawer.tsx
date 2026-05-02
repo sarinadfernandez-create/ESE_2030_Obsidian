@@ -31,7 +31,9 @@ export function AnimatedSolutionDrawer() {
   const prev = useDrawerStore((s) => s.prev);
   const next = useDrawerStore((s) => s.next);
 
-  const frames = problem?.solutionFrames ?? [];
+  // Drawer only opens for open-format problems with animated solutions; narrow safely.
+  const frames =
+    problem && problem.format === 'open' ? problem.solutionFrames ?? [] : [];
   const frame = frames[currentFrameIndex];
   const prevFrame = currentFrameIndex > 0 ? frames[currentFrameIndex - 1] : null;
 
@@ -65,7 +67,10 @@ export function AnimatedSolutionDrawer() {
       const dt = now - lastTimeRef.current;
       lastTimeRef.current = now;
       const state = useDrawerStore.getState();
-      const liveFrames = state.problem?.solutionFrames ?? [];
+      const liveFrames =
+        state.problem && state.problem.format === 'open'
+          ? state.problem.solutionFrames ?? []
+          : [];
       const liveFrame = liveFrames[state.currentFrameIndex];
       if (!liveFrame) return;
       const dur = liveFrame.durationMs ?? 1500;

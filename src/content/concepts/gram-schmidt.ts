@@ -101,6 +101,7 @@ A second mistake: thinking Gram-Schmidt requires inputs that are already "close 
 
     problems: [
       {
+        format: 'open' as const,
         id: 'P-5.4a',
         difficulty: 1,
         statement: 'Apply Gram-Schmidt to $v_1 = (3, 0)$ and $v_2 = (1, 2)$. Find $e_1$ and $e_2$.',
@@ -135,6 +136,7 @@ A second mistake: thinking Gram-Schmidt requires inputs that are already "close 
         ],
       },
       {
+        format: 'open' as const,
         id: 'P-5.4b',
         difficulty: 2,
         statement: 'Show that if $\\{e_1, \\dots, e_n\\}$ is an orthonormal basis and $v = \\sum_i c_i e_i$, then $c_i = \\langle v, e_i \\rangle$.',
@@ -142,6 +144,7 @@ A second mistake: thinking Gram-Schmidt requires inputs that are already "close 
         hasAnimatedSolution: false,
       },
       {
+        format: 'open' as const,
         id: 'P-5.4c',
         difficulty: 2,
         statement: 'What happens when Gram-Schmidt is applied to a linearly dependent set? Specifically, run the process on $v_1 = (1, 0, 0)$, $v_2 = (0, 1, 0)$, $v_3 = (1, 1, 0)$, and explain at which step it fails and why.',
@@ -171,6 +174,7 @@ A second mistake: thinking Gram-Schmidt requires inputs that are already "close 
         ],
       },
       {
+        format: 'open' as const,
         id: 'P-5.4d',
         difficulty: 3,
         statement: 'Let $A$ be an $m \\times n$ matrix with linearly independent columns. Show that the QR decomposition $A = QR$ produced by Gram-Schmidt has $R_{kk} = \\|u_k\\|$ on its diagonal, where $u_k$ is the $k$-th orthogonalized vector before normalization. Conclude that $R$ has positive diagonal entries.',

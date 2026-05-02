@@ -86,6 +86,7 @@ This is the same phenomenon as a [[rank-and-conditioning|rank-deficient]] linear
 
     problems: [
       {
+        format: 'open' as const,
         id: 'P-1.9.2a',
         difficulty: 2,
         statement: "Apply Maxwell's rule to a planar truss with 5 bars, 4 joints, and 3 support reactions. Is the count consistent with static determinacy?",
@@ -93,6 +94,7 @@ This is the same phenomenon as a [[rank-and-conditioning|rank-deficient]] linear
         hasAnimatedSolution: false,
       },
       {
+        format: 'open' as const,
         id: 'P-1.9.2b',
         difficulty: 3,
         statement: 'Show that a truss whose equilibrium matrix has [[image-and-kernel|null space]] of dimension $k$ has exactly $k$ independent states of self-stress.',

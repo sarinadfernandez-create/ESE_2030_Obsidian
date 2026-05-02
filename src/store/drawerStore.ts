@@ -55,7 +55,8 @@ export const useDrawerStore = create<DrawerState>((set, get) => ({
   pause: () => set({ isPlaying: false }),
 
   setFrameIndex: (i) => {
-    const frames = get().problem?.solutionFrames ?? [];
+    const p = get().problem;
+    const frames = p && p.format === 'open' ? p.solutionFrames ?? [] : [];
     const clamped = Math.max(0, Math.min(frames.length - 1, i));
     set({ currentFrameIndex: clamped });
   },
@@ -69,7 +70,9 @@ export const useDrawerStore = create<DrawerState>((set, get) => ({
 
   next: () => {
     const { currentFrameIndex, problem } = get();
-    const max = (problem?.solutionFrames?.length ?? 1) - 1;
+    const frames =
+      problem && problem.format === 'open' ? problem.solutionFrames ?? [] : [];
+    const max = Math.max(0, frames.length - 1);
     set({ currentFrameIndex: Math.min(max, currentFrameIndex + 1), tweenT: 0, isPlaying: false });
   },
 }));

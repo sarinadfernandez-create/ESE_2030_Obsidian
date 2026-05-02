@@ -57,14 +57,89 @@ export interface WorkedExampleStep {
   body: string;
 }
 
-export interface Problem {
+// ── Problem types: open-ended (proof / construction) and multiple-choice ───
+
+export type ProblemFormat = 'open' | 'multiple-choice';
+
+export interface OpenProblem {
   id: string;
+  format: 'open';
   difficulty: 1 | 2 | 3;
   statement: string;
   hint?: string;
   hasAnimatedSolution: boolean;
   solutionFrames?: SolutionFrame[];
+  // Optional written solution shown via an inline expander.
+  writtenSolution?: string;
 }
+
+export interface Choice {
+  label: 'A' | 'B' | 'C' | 'D' | 'E';
+  body: string;
+}
+
+export interface TrickAnalysis {
+  choice: 'A' | 'B' | 'C' | 'D' | 'E';
+  why: string;
+}
+
+export type SolutionVisualKind =
+  | 'matrix-highlight'
+  | 'lines-2d'
+  | 'parallelogram'
+  | 'subspace-test'
+  | 'none';
+
+export interface MatrixHighlightData {
+  matrix: (number | string)[][];
+  highlights: { row: number; col: number; color: 'pivot' | 'zero' | 'warning' | 'correct' }[];
+  rowSeparator?: number;
+}
+
+export interface Lines2DData {
+  lines: { a: number; b: number; c: number; color: 'blue' | 'yellow' | 'red'; label?: string }[];
+  intersection?: { x: number; y: number; label?: string };
+  range?: [number, number];
+}
+
+export interface ParallelogramData {
+  matrix: [[number, number], [number, number]];
+  showDeterminant?: boolean;
+  showOriginalSquare?: boolean;
+}
+
+export interface SubspaceTestData {
+  region: 'upper-half-plane' | 'shifted-line' | 'union-of-axes' | 'unit-disk' | 'custom';
+  failureExample: {
+    kind: 'closure-add' | 'closure-scale' | 'no-zero';
+    points?: [number, number][];
+    arrow?: { from: [number, number]; to: [number, number] };
+  };
+}
+
+export interface SolutionVisual {
+  kind: SolutionVisualKind;
+  // The data shape depends on `kind`. Concrete components narrow at runtime.
+  data: MatrixHighlightData | Lines2DData | ParallelogramData | SubspaceTestData | null;
+  caption?: string;
+}
+
+export interface MultipleChoiceProblem {
+  id: string;
+  format: 'multiple-choice';
+  difficulty: 1 | 2 | 3;
+  statement: string;
+  choices: Choice[];
+  correctAnswer: 'A' | 'B' | 'C' | 'D' | 'E';
+  solution: {
+    explanation: string;
+    partialCredit?: string;
+    trickAnalysis: TrickAnalysis[];
+    visual?: SolutionVisual;
+  };
+}
+
+export type Problem = OpenProblem | MultipleChoiceProblem;
 
 export interface SolutionFrame {
   caption: string;

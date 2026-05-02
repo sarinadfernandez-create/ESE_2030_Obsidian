@@ -85,6 +85,7 @@ A second, more subtle one: the choice of edge directions in the graph is somewha
 
     problems: [
       {
+        format: 'open' as const,
         id: 'P-1.9.1a',
         difficulty: 2,
         statement: 'For a graph with 4 nodes connected in a square (4 edges, no diagonals), how many independent circulations are there?',
@@ -92,6 +93,7 @@ A second, more subtle one: the choice of edge directions in the graph is somewha
         hasAnimatedSolution: false,
       },
       {
+        format: 'open' as const,
         id: 'P-1.9.1b',
         difficulty: 3,
         statement: "Show that the incidence matrix of any graph has the all-ones vector $(1, 1, \\dots, 1)^T$ in the [[image-and-kernel|left null space]]. (Think about what this vector means physically — it's why potentials are only defined up to a constant.)",

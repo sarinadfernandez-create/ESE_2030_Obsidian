@@ -2,7 +2,32 @@ import { MarkdownMath } from '../math/MarkdownMath';
 import { MisconceptionCallout } from './MisconceptionCallout';
 import { EigenvectorViz } from '../visualizations/EigenvectorViz';
 import { GramSchmidtViz } from '../visualizations/GramSchmidtViz';
+import { LinearSystemViz } from '../visualizations/LinearSystemViz';
+import { SpecialMatrixGallery } from '../visualizations/SpecialMatrixGallery';
+import { RowReductionStepper } from '../visualizations/RowReductionStepper';
+import { InverseViz } from '../visualizations/InverseViz';
+import { EliminationAsMatrices } from '../visualizations/EliminationAsMatrices';
+import { LUStepper } from '../visualizations/LUStepper';
+import { PLUStepper } from '../visualizations/PLUStepper';
+import { ConditioningViz } from '../visualizations/ConditioningViz';
+import { NetworkFlowViz } from '../visualizations/NetworkFlowViz';
+import { TrussViz } from '../visualizations/TrussViz';
 import type { Concept } from '../../content/types';
+
+const VIZ_REGISTRY: Record<string, React.FC> = {
+  EigenvectorViz: () => <EigenvectorViz />,
+  GramSchmidtViz: () => <GramSchmidtViz />,
+  LinearSystemViz,
+  SpecialMatrixGallery,
+  RowReductionStepper,
+  InverseViz,
+  EliminationAsMatrices,
+  LUStepper,
+  PLUStepper,
+  ConditioningViz,
+  NetworkFlowViz,
+  TrussViz,
+};
 
 export function ExploreTab({ concept }: { concept: Concept }) {
   if (!concept.explore) {
@@ -13,6 +38,7 @@ export function ExploreTab({ concept }: { concept: Concept }) {
     );
   }
   const { vizComponent, description, misconception } = concept.explore;
+  const VizComponent = VIZ_REGISTRY[vizComponent];
 
   return (
     <div style={{ maxWidth: 760 }}>
@@ -28,9 +54,9 @@ export function ExploreTab({ concept }: { concept: Concept }) {
       </div>
 
       <div style={{ marginBottom: 32 }}>
-        {vizComponent === 'EigenvectorViz' && <EigenvectorViz />}
-        {vizComponent === 'GramSchmidtViz' && <GramSchmidtViz />}
-        {vizComponent !== 'EigenvectorViz' && vizComponent !== 'GramSchmidtViz' && (
+        {VizComponent ? (
+          <VizComponent />
+        ) : (
           <div
             style={{
               background: 'var(--bg-panel)',
