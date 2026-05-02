@@ -40,7 +40,7 @@
   --viz-axis: rgba(180, 200, 230, 0.24);
 
   /* Typography */
-  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-display: 'Fraunces', 'Times New Roman', serif;
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }

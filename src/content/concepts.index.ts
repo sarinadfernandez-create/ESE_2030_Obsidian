@@ -1,13 +1,18 @@
 import type { Concept } from './types';
 import { CONCEPT_NODES, UNITS, EDGES } from './graph';
-import { eigenvectorsContent } from './concepts/eigenvectors';
-import { gramSchmidtContent } from './concepts/gram-schmidt';
+import { eigenvectors } from './concepts/eigenvectors';
+import { gramSchmidt } from './concepts/gram-schmidt';
 
 export { UNITS, EDGES };
 
+const FLAGSHIP_OVERRIDES: Record<string, Concept> = {
+  eigenvectors,
+  'gram-schmidt': gramSchmidt,
+};
+
 export const CONCEPTS: Concept[] = CONCEPT_NODES.map((node): Concept => {
-  if (node.id === 'eigenvectors') return { ...node, ...eigenvectorsContent } as Concept;
-  if (node.id === 'gram-schmidt') return { ...node, ...gramSchmidtContent } as Concept;
+  const override = FLAGSHIP_OVERRIDES[node.id];
+  if (override) return { ...node, ...override };
   return node as Concept;
 });
 

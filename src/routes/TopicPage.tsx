@@ -1,88 +1,28 @@
 import { useParams, useSearchParams, Link } from 'react-router-dom';
-import { Sparkles, BookOpen, FlaskConical, PenLine } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import { getConceptById, getUnitById } from '../content/concepts.index';
-import type { TabId } from '../content/types';
+import type { TabId, Concept } from '../content/types';
 import { Breadcrumb } from '../components/ui/Breadcrumb';
 import { TopicHeader } from '../components/topic/TopicHeader';
 import { TabBar } from '../components/topic/TabBar';
 import { NotesSidebar } from '../components/notes/NotesSidebar';
+import { LearnTab } from '../components/topic/LearnTab';
+import { ExploreTab } from '../components/topic/ExploreTab';
+import { PracticeTab } from '../components/topic/PracticeTab';
+import { AnimatedSolutionDrawer } from '../components/topic/AnimatedSolutionDrawer';
 
-// ── Tab content panels ────────────────────────────────────────────────────────
-
-function StubContent() {
+function StubContent({ concept }: { concept: Concept }) {
   return (
     <div className="flex flex-col items-center py-16 gap-4 text-center max-w-md mx-auto">
       <BookOpen size={32} className="text-text-muted" />
       <p className="text-text-secondary font-sans text-base leading-relaxed">
-        This concept is part of the full graph but doesn&apos;t yet have a
-        deep-dive page. Coming soon.
+        <span className="font-display italic">{concept.title}</span> is part of
+        the full graph but doesn't yet have a deep-dive page.
       </p>
+      <p className="text-text-tertiary text-sm leading-relaxed">{concept.blurb}</p>
     </div>
   );
 }
-
-interface FlagshipPlaceholderProps {
-  tab: TabId;
-  conceptId: string;
-}
-
-const TAB_ICONS = {
-  learn: BookOpen,
-  explore: FlaskConical,
-  practice: PenLine,
-} as const;
-
-const TAB_COMING = {
-  learn: 'Definitions, theorems, worked overview, and key formulas.',
-  explore: 'Interactive SVG visualization with real-time parameter controls.',
-  practice: 'Worked examples with animated solution walkthroughs and problem sets.',
-} as const;
-
-function FlagshipPlaceholder({ tab, conceptId }: FlagshipPlaceholderProps) {
-  const Icon = TAB_ICONS[tab];
-  return (
-    <div className="flex flex-col items-center py-14 gap-4 text-center max-w-md mx-auto">
-      <div className="w-12 h-12 rounded-full bg-bg-elevated border border-border-default flex items-center justify-center">
-        <Sparkles size={20} className="text-accent" />
-      </div>
-      <p className="font-mono text-xs uppercase tracking-widest text-accent">
-        Flagship · {conceptId}
-      </p>
-      <div className="flex items-center gap-2 text-text-secondary">
-        <Icon size={16} className="flex-shrink-0" />
-        <p className="font-sans text-sm leading-relaxed text-left">
-          {TAB_COMING[tab]}
-        </p>
-      </div>
-      <p className="text-text-muted font-sans text-xs mt-2">
-        Full content arrives in the next deliverable.
-      </p>
-    </div>
-  );
-}
-
-// ── Learn tab ─────────────────────────────────────────────────────────────────
-
-function LearnTab({ tier, conceptId }: { tier: string; conceptId: string }) {
-  if (tier === 'stub') return <StubContent />;
-  return <FlagshipPlaceholder tab="learn" conceptId={conceptId} />;
-}
-
-// ── Explore tab ───────────────────────────────────────────────────────────────
-
-function ExploreTab({ tier, conceptId }: { tier: string; conceptId: string }) {
-  if (tier === 'stub') return <StubContent />;
-  return <FlagshipPlaceholder tab="explore" conceptId={conceptId} />;
-}
-
-// ── Practice tab ──────────────────────────────────────────────────────────────
-
-function PracticeTab({ tier, conceptId }: { tier: string; conceptId: string }) {
-  if (tier === 'stub') return <StubContent />;
-  return <FlagshipPlaceholder tab="practice" conceptId={conceptId} />;
-}
-
-// ── 404 ───────────────────────────────────────────────────────────────────────
 
 function NotFound({ id }: { id: string }) {
   return (
@@ -103,8 +43,6 @@ function NotFound({ id }: { id: string }) {
     </div>
   );
 }
-
-// ── TopicPage ─────────────────────────────────────────────────────────────────
 
 const VALID_TABS: TabId[] = ['learn', 'explore', 'practice'];
 
@@ -128,43 +66,46 @@ export function TopicPage() {
     setSearchParams({ tab }, { replace: true });
   };
 
+  const isStub = concept.tier === 'stub';
+
   return (
-    <div className="max-w-[1280px] mx-auto px-8 py-8">
-      <div className="flex gap-12">
-        {/* ── Main content column ── */}
-        <div className="flex-1 min-w-0">
-          <Breadcrumb
-            items={[
-              { label: 'Graph', href: '/graph' },
-              { label: `Ch.${unit.number} · ${unit.short}` },
-              { label: concept.title },
-            ]}
-          />
+    <>
+      <div className="max-w-[1280px] mx-auto px-8 py-8">
+        <div className="flex gap-12">
+          <div className="flex-1 min-w-0">
+            <Breadcrumb
+              items={[
+                { label: 'Graph', href: '/graph' },
+                { label: `Ch.${unit.number} · ${unit.short}` },
+                { label: concept.title },
+              ]}
+            />
 
-          <TopicHeader concept={concept} unit={unit} />
+            <TopicHeader concept={concept} unit={unit} />
 
-          <TabBar active={activeTab} onChange={handleTabChange} />
+            <TabBar active={activeTab} onChange={handleTabChange} />
 
-          <div
-            role="tabpanel"
-            aria-label={`${activeTab} tab content`}
-            className="min-h-[40vh]"
-          >
-            {activeTab === 'learn' && (
-              <LearnTab tier={concept.tier} conceptId={concept.id} />
-            )}
-            {activeTab === 'explore' && (
-              <ExploreTab tier={concept.tier} conceptId={concept.id} />
-            )}
-            {activeTab === 'practice' && (
-              <PracticeTab tier={concept.tier} conceptId={concept.id} />
-            )}
+            <div
+              role="tabpanel"
+              aria-label={`${activeTab} tab content`}
+              className="min-h-[40vh] pt-6"
+            >
+              {isStub ? (
+                <StubContent concept={concept} />
+              ) : (
+                <>
+                  {activeTab === 'learn' && <LearnTab concept={concept} />}
+                  {activeTab === 'explore' && <ExploreTab concept={concept} />}
+                  {activeTab === 'practice' && <PracticeTab concept={concept} />}
+                </>
+              )}
+            </div>
           </div>
-        </div>
 
-        {/* ── Notes sidebar ── */}
-        <NotesSidebar conceptId={concept.id} />
+          <NotesSidebar conceptId={concept.id} />
+        </div>
       </div>
-    </div>
+      <AnimatedSolutionDrawer />
+    </>
   );
 }
