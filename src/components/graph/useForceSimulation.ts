@@ -11,7 +11,7 @@ import {
   type SimulationNodeDatum,
   type SimulationLinkDatum,
 } from 'd3-force';
-import type { UnitId } from '../../content/types';
+import type { EdgeSource, UnitId } from '../../content/types';
 
 export interface SimNode extends SimulationNodeDatum {
   id: string;
@@ -28,6 +28,7 @@ export interface SimLink extends SimulationLinkDatum<SimNode> {
   source: string | SimNode;
   target: string | SimNode;
   type: string;
+  edgeSource?: EdgeSource;
 }
 
 interface UseForceSimulationOptions {

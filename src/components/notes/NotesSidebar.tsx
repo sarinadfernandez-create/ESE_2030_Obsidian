@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useNotesStore } from '../../store/notesStore';
 import { NoteCard } from './NoteCard';
@@ -11,7 +11,16 @@ interface NotesSidebarProps {
 }
 
 export function NotesSidebar({ conceptId }: NotesSidebarProps) {
-  const notes = useNotesStore((s) => s.getNotesForConcept(conceptId));
+  // Subscribe to the raw notes record (stable reference unless notes change),
+  // then derive the per-concept list locally. Calling a method-style selector
+  // like getNotesForConcept inside useNotesStore returns a fresh array every
+  // call and triggers Zustand's "getSnapshot should be cached" infinite loop.
+  const notesMap = useNotesStore((s) => s.notes);
+  const notes = useMemo(() => {
+    return Object.values(notesMap)
+      .filter((n) => n.linkedConcepts.includes(conceptId))
+      .sort((a, b) => b.updatedAt - a.updatedAt);
+  }, [notesMap, conceptId]);
   const createNote = useNotesStore((s) => s.createNote);
   const [openNoteId, setOpenNoteId] = useState<string | null>(null);
 

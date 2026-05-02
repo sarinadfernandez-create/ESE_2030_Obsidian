@@ -8,7 +8,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { zoom as d3Zoom, zoomIdentity, type ZoomBehavior } from 'd3-zoom';
 import { select } from 'd3-selection';
-import { CONCEPTS, UNITS, EDGES } from '../../content/concepts.index';
+import { CONCEPTS, UNITS, getAllEdges } from '../../content/concepts.index';
 import { useGraphStore, type ViewMode } from '../../store/graphStore';
 import { useProgressStore } from '../../store/progressStore';
 import { useNotesStore } from '../../store/notesStore';
@@ -16,14 +16,15 @@ import { useForceSimulation, type SimNode, type SimLink } from './useForceSimula
 import { UnitBlob, ConceptNode, NoteNode } from './GraphNode';
 import { GraphEdge, UnitEdge } from './GraphEdge';
 import { HoverPreview } from './HoverPreview';
-import type { Concept, EdgeType, Note, UnitId } from '../../content/types';
+import type { Concept, Edge, EdgeType, Note, UnitId } from '../../content/types';
 
-const EDGE_TYPE_LABELS: { type: EdgeType; label: string; style: string }[] = [
+const EDGE_TYPE_LABELS: { type: EdgeType | 'mention'; label: string; style: string }[] = [
   { type: 'prereq', label: 'Prerequisite', style: 'solid' },
   { type: 'generalizes', label: 'Generalizes', style: 'solid + arrow' },
   { type: 'applies-to', label: 'Application', style: 'dashed' },
   { type: 'related', label: 'Related', style: 'dotted' },
   { type: 'dual-of', label: 'Dual', style: 'double' },
+  { type: 'mention', label: 'Mention', style: 'dotted (faint)' },
 ];
 
 function computeUnitCentroids(
@@ -93,12 +94,13 @@ function buildClusteredGraph(
   const links: SimLink[] = [];
   const unitEdgeSet = new Set<string>();
 
-  EDGES.forEach((e) => {
+  const allEdges: Edge[] = getAllEdges();
+  allEdges.forEach((e) => {
     const srcVisible = visibleConceptIds.has(e.from);
     const tgtVisible = visibleConceptIds.has(e.to);
 
     if (srcVisible && tgtVisible) {
-      links.push({ source: e.from, target: e.to, type: e.type });
+      links.push({ source: e.from, target: e.to, type: e.type, edgeSource: e.source });
     } else {
       const srcConcept = CONCEPTS.find((c) => c.id === e.from);
       const tgtConcept = CONCEPTS.find((c) => c.id === e.to);
@@ -140,10 +142,11 @@ function buildExpandedGraph(notes: Note[]): { nodes: SimNode[]; links: SimLink[]
     radius: c.isApplication ? 12 : 14,
   }));
 
-  const links: SimLink[] = EDGES.map((e) => ({
+  const links: SimLink[] = getAllEdges().map((e) => ({
     source: e.from,
     target: e.to,
     type: e.type,
+    edgeSource: e.source,
   }));
 
   notes.forEach((note) => {
@@ -173,6 +176,7 @@ export function ConceptGraph() {
   });
   const hoverTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [showPreview, setShowPreview] = useState(false);
+  const [hoveredEdge, setHoveredEdge] = useState<{ link: SimLink; x: number; y: number } | null>(null);
 
   const draggingRef = useRef<string | null>(null);
   const dragStartPosRef = useRef<{ x: number; y: number } | null>(null);
@@ -482,11 +486,16 @@ export function ConceptGraph() {
           x2={tp.x}
           y2={tp.y}
           type={link.type as EdgeType}
+          source={link.edgeSource}
           dimmed={
             hoveredNode !== null &&
             hoveredNode !== srcId &&
             hoveredNode !== tgtId
           }
+          onMouseEnter={(e: React.MouseEvent) =>
+            setHoveredEdge({ link, x: e.clientX, y: e.clientY })
+          }
+          onMouseLeave={() => setHoveredEdge(null)}
         />
       );
     });
@@ -774,6 +783,63 @@ export function ConceptGraph() {
         </g>
       </svg>
 
+      {/* Edge hover tooltip */}
+      {hoveredEdge && (() => {
+        const { link, x, y } = hoveredEdge;
+        const srcId = typeof link.source === 'string' ? link.source : link.source.id;
+        const tgtId = typeof link.target === 'string' ? link.target : link.target.id;
+        const src = link.edgeSource;
+        const isNoteEdge = link.type === NOTE_EDGE_TYPE || src?.kind === 'note';
+
+        let title: string;
+        let body: string;
+        if (isNoteEdge) {
+          const noteId = srcId.startsWith('note:') ? srcId.replace('note:', '') : tgtId.replace('note:', '');
+          const note = notesMap[noteId];
+          title = 'mentioned in your note';
+          body = note ? (note.title.trim() || note.body.split('\n')[0]?.slice(0, 40) || 'Untitled') : 'note';
+        } else if (src?.kind === 'mention') {
+          title = 'mentioned in';
+          body = src.location ?? `${srcId} → ${tgtId}`;
+        } else {
+          title = link.type;
+          body = `${srcId} → ${tgtId}`;
+        }
+
+        return (
+          <div
+            style={{
+              position: 'absolute',
+              left: Math.min(x + 14, size.width - 260),
+              top: Math.min(y + 14, size.height - 80),
+              pointerEvents: 'none',
+              background: 'var(--bg-elevated)',
+              border: '1px solid var(--border-default)',
+              borderRadius: 4,
+              padding: '8px 12px',
+              maxWidth: 260,
+              zIndex: 50,
+            }}
+          >
+            <div
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: 9,
+                color: 'var(--text-tertiary)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.06em',
+                marginBottom: 3,
+              }}
+            >
+              {title}
+            </div>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--text-primary)' }}>
+              {body}
+            </div>
+          </div>
+        );
+      })()}
+
       {/* Hover Preview — concept */}
       {showPreview && hoveredConcept && hoveredUnit && (
         <HoverPreview
@@ -818,8 +884,12 @@ export function ConceptGraph() {
   );
 }
 
-function LegendLine({ type }: { type: EdgeType }) {
+function LegendLine({ type }: { type: EdgeType | 'mention' }) {
   switch (type) {
+    case 'mention':
+      return (
+        <line x1={0} y1={4} x2={24} y2={4} stroke="var(--border-subtle)" strokeWidth={0.8} strokeDasharray="2 3" opacity={0.7} />
+      );
     case 'prereq':
       return (
         <line x1={0} y1={4} x2={24} y2={4} stroke="var(--border-default)" strokeWidth={1} />

@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import type { EdgeType } from '../../content/types';
+import type { EdgeType, EdgeSource } from '../../content/types';
 
 interface GraphEdgeProps {
   x1: number;
@@ -7,7 +7,10 @@ interface GraphEdgeProps {
   x2: number;
   y2: number;
   type: EdgeType;
+  source?: EdgeSource;
   dimmed?: boolean;
+  onMouseEnter?: (e: React.MouseEvent) => void;
+  onMouseLeave?: () => void;
 }
 
 export const GraphEdge = memo(function GraphEdge({
@@ -16,13 +19,54 @@ export const GraphEdge = memo(function GraphEdge({
   x2,
   y2,
   type,
+  source,
   dimmed,
+  onMouseEnter,
+  onMouseLeave,
 }: GraphEdgeProps) {
-  const opacity = dimmed ? 0.08 : 1;
+  const baseOpacity = dimmed ? 0.08 : 1;
+  // Mention edges read as atmosphere — fainter than manual 'related'.
+  const isMention = source?.kind === 'mention';
+  const opacity = isMention ? baseOpacity * 0.7 : baseOpacity;
+
+  // A wide invisible line under the visible one captures hover events reliably.
+  const wrap = (visible: React.ReactNode) => (
+    <g
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      style={{ cursor: onMouseEnter ? 'help' : undefined }}
+    >
+      {onMouseEnter && (
+        <line
+          x1={x1}
+          y1={y1}
+          x2={x2}
+          y2={y2}
+          stroke="transparent"
+          strokeWidth={10}
+          pointerEvents="stroke"
+        />
+      )}
+      {visible}
+    </g>
+  );
+
+  if (isMention) {
+    // Mention edges are always 'related' style: dotted, subtle, slightly fainter.
+    return wrap(
+      <line
+        x1={x1} y1={y1} x2={x2} y2={y2}
+        stroke="var(--border-subtle)"
+        strokeWidth={0.8}
+        strokeDasharray="2 3"
+        opacity={opacity}
+      />
+    );
+  }
 
   switch (type) {
     case 'prereq':
-      return (
+      return wrap(
         <line
           x1={x1} y1={y1} x2={x2} y2={y2}
           stroke="var(--border-default)"
@@ -38,7 +82,7 @@ export const GraphEdge = memo(function GraphEdge({
       const ay = y2 - headLen * Math.sin(angle - 0.35);
       const bx = x2 - headLen * Math.cos(angle + 0.35);
       const by = y2 - headLen * Math.sin(angle + 0.35);
-      return (
+      return wrap(
         <g opacity={opacity}>
           <line
             x1={x1} y1={y1} x2={x2} y2={y2}
@@ -56,7 +100,7 @@ export const GraphEdge = memo(function GraphEdge({
     }
 
     case 'applies-to':
-      return (
+      return wrap(
         <line
           x1={x1} y1={y1} x2={x2} y2={y2}
           stroke="var(--accent-dim)"
@@ -67,7 +111,7 @@ export const GraphEdge = memo(function GraphEdge({
       );
 
     case 'related':
-      return (
+      return wrap(
         <line
           x1={x1} y1={y1} x2={x2} y2={y2}
           stroke="var(--border-subtle)"
@@ -84,7 +128,7 @@ export const GraphEdge = memo(function GraphEdge({
       const nx = -dy / len;
       const ny = dx / len;
       const offset = 2;
-      return (
+      return wrap(
         <g opacity={opacity}>
           <line
             x1={x1 + nx * offset} y1={y1 + ny * offset}
@@ -103,7 +147,7 @@ export const GraphEdge = memo(function GraphEdge({
     }
 
     default:
-      return (
+      return wrap(
         <line
           x1={x1} y1={y1} x2={x2} y2={y2}
           stroke="var(--border-subtle)"

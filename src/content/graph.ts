@@ -353,7 +353,10 @@ export const CONCEPT_NODES: Concept[] = [
     blurb: 'LLMs built on transformer attention mechanisms — linear algebra at unprecedented scale.' },
 ];
 
-export const EDGES: Edge[] = [
+// MANUAL_EDGES is the editorial skeleton — curated semantic relationships.
+// The graph also unions in mention edges (from [[backlinks]] in concept prose) and
+// note edges (from user notes). See concepts.index.ts for the union helpers.
+export const MANUAL_EDGES: Edge[] = [
   // ── Ch 1 internal ──────────────────────────────────────────────────────────
   { from: 'linear-systems',       to: 'row-reduction',          type: 'prereq' },
   { from: 'linear-systems',       to: 'special-matrices',       type: 'prereq' },
@@ -513,3 +516,7 @@ export const EDGES: Edge[] = [
   { from: 'eigenfaces',                to: 'neural-decoding',        type: 'related' },
   { from: 'neural-decoding',           to: 'cnns',                   type: 'related' },
 ];
+
+// Back-compat alias — legacy code still imports `EDGES`. New code should use MANUAL_EDGES
+// or the unioned set from concepts.index.ts.
+export const EDGES: Edge[] = MANUAL_EDGES;

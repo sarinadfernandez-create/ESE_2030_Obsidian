@@ -74,10 +74,18 @@ export interface SolutionFrame {
 
 export type EdgeType = 'prereq' | 'generalizes' | 'applies-to' | 'related' | 'dual-of';
 
+export interface EdgeSource {
+  kind: 'manual' | 'mention' | 'note';
+  // For 'mention': "<concept-id>.<field-path>" e.g. "row-reduction.learn.overview"
+  // For 'note': "note:<id>"
+  location?: string;
+}
+
 export interface Edge {
   from: ConceptId;
   to: ConceptId;
   type: EdgeType;
+  source?: EdgeSource;
 }
 
 export interface Note {
