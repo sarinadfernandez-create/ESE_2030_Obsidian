@@ -19,6 +19,18 @@ import { spanAndIndependence } from './concepts/span-and-independence';
 import { dimension } from './concepts/dimension';
 import { engineeringSignals } from './concepts/engineering-signals';
 import { linearDifferentialEquations } from './concepts/linear-differential-equations';
+import { euclideanTransformations } from './concepts/euclidean-transformations';
+import { linearTransformationDefs } from './concepts/linear-transformation-defs';
+import { linearTransformationExamples } from './concepts/linear-transformation-examples';
+import { injectiveSurjective } from './concepts/injective-surjective';
+import { imageAndKernel } from './concepts/image-and-kernel';
+import { rankAndNullity } from './concepts/rank-and-nullity';
+import { quotients } from './concepts/quotients';
+import { coimageCokernel } from './concepts/coimage-cokernel';
+import { fundamentalTheorem } from './concepts/fundamental-theorem';
+import { graphTopology } from './concepts/graph-topology';
+import { bases } from './concepts/bases';
+import { coordinates } from './concepts/coordinates';
 import { extractConceptBacklinks } from '../lib/parseBacklinks';
 
 export { UNITS, MANUAL_EDGES, EDGES };
@@ -45,6 +57,18 @@ const CONTENT_OVERRIDES: Record<string, Concept> = {
   dimension,
   'engineering-signals': engineeringSignals,
   'linear-differential-equations': linearDifferentialEquations,
+  'euclidean-transformations': euclideanTransformations,
+  'linear-transformation-defs': linearTransformationDefs,
+  'linear-transformation-examples': linearTransformationExamples,
+  'injective-surjective': injectiveSurjective,
+  'image-and-kernel': imageAndKernel,
+  'rank-and-nullity': rankAndNullity,
+  quotients,
+  'coimage-cokernel': coimageCokernel,
+  'fundamental-theorem': fundamentalTheorem,
+  'graph-topology': graphTopology,
+  bases,
+  coordinates,
 };
 
 export const CONCEPTS: Concept[] = CONCEPT_NODES.map((node): Concept => {

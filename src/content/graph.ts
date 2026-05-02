@@ -276,6 +276,9 @@ export const CONCEPT_NODES: Concept[] = [
   { id: 'network-flows',       unitId: 'ch1',  number: '1.A',  tier: 'stub', isApplication: true,
     title: 'Network Flows',
     blurb: "Kirchhoff's current law and flow conservation as linear equations on graph incidence matrices." },
+  { id: 'graph-topology',      unitId: 'ch3',  number: '3.10', tier: 'stub', isApplication: true,
+    title: 'Graph Topology',
+    blurb: 'The Fundamental Theorem applied to incidence matrices reveals cycles, components, and Euler’s formula.' },
   { id: 'engineering-signals', unitId: 'ch2',  number: '2.6.1', tier: 'stub', isApplication: true,
     title: 'Engineering Signals',
     blurb: 'Signals are functions of time, function spaces are vector spaces, and engineering operations are linear transformations.' },
@@ -389,6 +392,8 @@ export const MANUAL_EDGES: Edge[] = [
   { from: 'image-and-kernel',               to: 'quotients',                      type: 'prereq' },
   { from: 'quotients',                      to: 'coimage-cokernel',               type: 'prereq' },
   { from: 'fundamental-theorem',            to: 'coimage-cokernel',               type: 'generalizes' },
+  { from: 'fundamental-theorem',            to: 'graph-topology',                 type: 'applies-to' },
+  { from: 'image-and-kernel',               to: 'graph-topology',                 type: 'applies-to' },
 
   // ── Ch 4 internal ──────────────────────────────────────────────────────────
   { from: 'dimension',             to: 'bases',                  type: 'prereq' },
