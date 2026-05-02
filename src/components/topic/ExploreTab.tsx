@@ -12,6 +12,11 @@ import { PLUStepper } from '../visualizations/PLUStepper';
 import { ConditioningViz } from '../visualizations/ConditioningViz';
 import { NetworkFlowViz } from '../visualizations/NetworkFlowViz';
 import { TrussViz } from '../visualizations/TrussViz';
+import { VectorSpaceAxiomsViz } from '../visualizations/VectorSpaceAxiomsViz';
+import { VectorSpaceExamplesViz } from '../visualizations/VectorSpaceExamplesViz';
+import { SubspaceTester } from '../visualizations/SubspaceTester';
+import { SpanAndIndependenceViz } from '../visualizations/SpanAndIndependenceViz';
+import { DimensionViz } from '../visualizations/DimensionViz';
 import type { Concept } from '../../content/types';
 
 const VIZ_REGISTRY: Record<string, React.FC> = {
@@ -27,6 +32,11 @@ const VIZ_REGISTRY: Record<string, React.FC> = {
   ConditioningViz,
   NetworkFlowViz,
   TrussViz,
+  VectorSpaceAxiomsViz,
+  VectorSpaceExamplesViz,
+  SubspaceTester,
+  SpanAndIndependenceViz,
+  DimensionViz,
 };
 
 export function ExploreTab({ concept }: { concept: Concept }) {
@@ -38,7 +48,8 @@ export function ExploreTab({ concept }: { concept: Concept }) {
     );
   }
   const { vizComponent, description, misconception } = concept.explore;
-  const VizComponent = VIZ_REGISTRY[vizComponent];
+  const VizComponent = vizComponent ? VIZ_REGISTRY[vizComponent] : null;
+  const skipViz = vizComponent === null;
 
   return (
     <div style={{ maxWidth: 760 }}>
@@ -47,43 +58,45 @@ export function ExploreTab({ concept }: { concept: Concept }) {
           fontSize: 14,
           color: 'var(--text-secondary)',
           lineHeight: 1.65,
-          marginBottom: 24,
+          marginBottom: skipViz ? 32 : 24,
         }}
       >
         <MarkdownMath source={description} />
       </div>
 
-      <div style={{ marginBottom: 32 }}>
-        {VizComponent ? (
-          <VizComponent />
-        ) : (
-          <div
-            style={{
-              background: 'var(--bg-panel)',
-              border: '1px dashed var(--border-subtle)',
-              borderRadius: 8,
-              padding: '32px 24px',
-              textAlign: 'center',
-            }}
-          >
+      {!skipViz && (
+        <div style={{ marginBottom: 32 }}>
+          {VizComponent ? (
+            <VizComponent />
+          ) : (
             <div
               style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: 9,
-                color: 'var(--text-tertiary)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.08em',
-                marginBottom: 8,
+                background: 'var(--bg-panel)',
+                border: '1px dashed var(--border-subtle)',
+                borderRadius: 8,
+                padding: '32px 24px',
+                textAlign: 'center',
               }}
             >
-              {vizComponent}
+              <div
+                style={{
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: 9,
+                  color: 'var(--text-tertiary)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  marginBottom: 8,
+                }}
+              >
+                {vizComponent}
+              </div>
+              <div style={{ fontSize: 13, color: 'var(--text-tertiary)', fontStyle: 'italic' }}>
+                Visualization coming soon — read the misconception below for the conceptual takeaway.
+              </div>
             </div>
-            <div style={{ fontSize: 13, color: 'var(--text-tertiary)', fontStyle: 'italic' }}>
-              Visualization coming soon — read the misconception below for the conceptual takeaway.
-            </div>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
 
       <MisconceptionCallout title={misconception.title} body={misconception.body} />
     </div>

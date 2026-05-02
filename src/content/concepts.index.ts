@@ -12,6 +12,13 @@ import { pluDecomposition } from './concepts/plu-decomposition';
 import { rankAndConditioning } from './concepts/rank-and-conditioning';
 import { networkFlows } from './concepts/network-flows';
 import { structuralAnalysis } from './concepts/structural-analysis';
+import { vectorSpaceAxioms } from './concepts/vector-space-axioms';
+import { vectorSpaceExamples } from './concepts/vector-space-examples';
+import { subspaces } from './concepts/subspaces';
+import { spanAndIndependence } from './concepts/span-and-independence';
+import { dimension } from './concepts/dimension';
+import { engineeringSignals } from './concepts/engineering-signals';
+import { linearDifferentialEquations } from './concepts/linear-differential-equations';
 import { extractConceptBacklinks } from '../lib/parseBacklinks';
 
 export { UNITS, MANUAL_EDGES, EDGES };
@@ -31,6 +38,13 @@ const CONTENT_OVERRIDES: Record<string, Concept> = {
   'rank-and-conditioning': rankAndConditioning,
   'network-flows': networkFlows,
   'structural-analysis': structuralAnalysis,
+  'vector-space-axioms': vectorSpaceAxioms,
+  'vector-space-examples': vectorSpaceExamples,
+  subspaces,
+  'span-and-independence': spanAndIndependence,
+  dimension,
+  'engineering-signals': engineeringSignals,
+  'linear-differential-equations': linearDifferentialEquations,
 };
 
 export const CONCEPTS: Concept[] = CONCEPT_NODES.map((node): Concept => {

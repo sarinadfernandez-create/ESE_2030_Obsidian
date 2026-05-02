@@ -27,7 +27,10 @@ export interface Concept {
   };
 
   explore?: {
-    vizComponent: string;
+    // string: render the named viz (or "Visualization coming soon" placeholder if not registered).
+    // null: skip the viz panel entirely; render only description + misconception.
+    // Used for application pages where no interactive viz is appropriate.
+    vizComponent: string | null;
     misconception: {
       title: string;
       body: string;
