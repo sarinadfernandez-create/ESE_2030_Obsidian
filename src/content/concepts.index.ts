@@ -31,6 +31,12 @@ import { fundamentalTheorem } from './concepts/fundamental-theorem';
 import { graphTopology } from './concepts/graph-topology';
 import { bases } from './concepts/bases';
 import { coordinates } from './concepts/coordinates';
+import { changeOfBasis } from './concepts/change-of-basis';
+import { matrixRepresentations } from './concepts/matrix-representations';
+import { similarity } from './concepts/similarity';
+import { roboticKinematics } from './concepts/robotic-kinematics';
+import { computerGraphics } from './concepts/computer-graphics';
+import { dotAndInnerProducts } from './concepts/dot-and-inner-products';
 import { extractConceptBacklinks } from '../lib/parseBacklinks';
 
 export { UNITS, MANUAL_EDGES, EDGES };
@@ -69,6 +75,12 @@ const CONTENT_OVERRIDES: Record<string, Concept> = {
   'graph-topology': graphTopology,
   bases,
   coordinates,
+  'change-of-basis': changeOfBasis,
+  'matrix-representations': matrixRepresentations,
+  similarity,
+  'robotic-kinematics': roboticKinematics,
+  'computer-graphics': computerGraphics,
+  'dot-and-inner-products': dotAndInnerProducts,
 };
 
 export const CONCEPTS: Concept[] = CONCEPT_NODES.map((node): Concept => {
