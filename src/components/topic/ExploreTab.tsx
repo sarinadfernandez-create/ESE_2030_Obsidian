@@ -23,6 +23,18 @@ import { RankNullityViz } from '../visualizations/RankNullityViz';
 import { EuclideanTransformViz } from '../visualizations/EuclideanTransformViz';
 import { InjectiveSurjectiveViz } from '../visualizations/InjectiveSurjectiveViz';
 import { KernelImageViz } from '../visualizations/KernelImageViz';
+import { LinearityChecker } from '../visualizations/LinearityChecker';
+import { QuotientViz } from '../visualizations/QuotientViz';
+import { CoimageCokernelViz } from '../visualizations/CoimageCokernelViz';
+import { BasisExplorer } from '../visualizations/BasisExplorer';
+import { CoordinateViz } from '../visualizations/CoordinateViz';
+import { ChangeOfBasisViz } from '../visualizations/ChangeOfBasisViz';
+import { MatrixRepresentationViz } from '../visualizations/MatrixRepresentationViz';
+import { SimilarityViz } from '../visualizations/SimilarityViz';
+import { OrthogonalTransformViz } from '../visualizations/OrthogonalTransformViz';
+import { InnerProductViz } from '../visualizations/InnerProductViz';
+import { AnglesViz } from '../visualizations/AnglesViz';
+import { OrthonormalBasisViz } from '../visualizations/OrthonormalBasisViz';
 import type { Concept } from '../../content/types';
 
 const VIZ_REGISTRY: Record<string, React.FC> = {
@@ -49,6 +61,18 @@ const VIZ_REGISTRY: Record<string, React.FC> = {
   EuclideanTransformViz,
   InjectiveSurjectiveViz,
   KernelImageViz,
+  LinearityChecker,
+  QuotientViz,
+  CoimageCokernelViz,
+  BasisExplorer,
+  CoordinateViz,
+  ChangeOfBasisViz,
+  MatrixRepresentationViz,
+  SimilarityViz,
+  OrthogonalTransformViz,
+  InnerProductViz,
+  AnglesViz,
+  OrthonormalBasisViz,
 };
 
 export function ExploreTab({ concept }: { concept: Concept }) {
