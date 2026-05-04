@@ -26,6 +26,9 @@ import { KernelImageViz } from '../visualizations/KernelImageViz';
 import { LinearityChecker } from '../visualizations/LinearityChecker';
 import { QuotientViz } from '../visualizations/QuotientViz';
 import { CoimageCokernelViz } from '../visualizations/CoimageCokernelViz';
+import { BasisExplorer } from '../visualizations/BasisExplorer';
+import { CoordinateViz } from '../visualizations/CoordinateViz';
+import { ChangeOfBasisViz } from '../visualizations/ChangeOfBasisViz';
 import type { Concept } from '../../content/types';
 
 const VIZ_REGISTRY: Record<string, React.FC> = {
@@ -55,6 +58,9 @@ const VIZ_REGISTRY: Record<string, React.FC> = {
   LinearityChecker,
   QuotientViz,
   CoimageCokernelViz,
+  BasisExplorer,
+  CoordinateViz,
+  ChangeOfBasisViz,
 };
 
 export function ExploreTab({ concept }: { concept: Concept }) {
