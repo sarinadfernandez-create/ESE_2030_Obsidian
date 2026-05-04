@@ -468,3 +468,44 @@ export function ellipseFromMatrix2x2(A: Mat2): {
   }
   return { semiMajor, semiMinor, angle };
 }
+
+// ── Null space and image basis ─────────────────────────────────────────────
+
+/**
+ * Compute a basis for the null space of `A` from its RREF.
+ * Returns column vectors (each of length n) that span ker(A).
+ */
+export function nullSpaceBasis(matrix: number[][]): number[][] {
+  if (matrix.length === 0) return [];
+  const n = matrix[0].length;
+  const { rref, pivots } = computeRREF(matrix, { partialPivot: true });
+  const pivotCols = new Set(pivots.map((p) => p.col));
+  const freeCols: number[] = [];
+  for (let j = 0; j < n; j++) if (!pivotCols.has(j)) freeCols.push(j);
+  // For each free column f: v = e_f - sum over pivots p (rref[p.row][f]) * e_{p.col}
+  return freeCols.map((f) => {
+    const v = new Array(n).fill(0);
+    v[f] = 1;
+    for (const p of pivots) {
+      v[p.col] = -rref[p.row][f];
+    }
+    return v;
+  });
+}
+
+/**
+ * Image basis = the original columns of `A` at pivot positions.
+ * (Crucially, NOT the RREF columns themselves.)
+ */
+export function imageBasisFromPivots(matrix: number[][]): { cols: number[][]; pivotCols: number[] } {
+  if (matrix.length === 0) return { cols: [], pivotCols: [] };
+  const m = matrix.length;
+  const { pivots } = computeRREF(matrix, { partialPivot: true });
+  const pivotCols = pivots.map((p) => p.col);
+  const cols = pivotCols.map((j) => {
+    const col = new Array(m);
+    for (let i = 0; i < m; i++) col[i] = matrix[i][j];
+    return col;
+  });
+  return { cols, pivotCols };
+}
