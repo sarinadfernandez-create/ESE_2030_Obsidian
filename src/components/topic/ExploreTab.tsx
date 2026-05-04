@@ -29,6 +29,9 @@ import { CoimageCokernelViz } from '../visualizations/CoimageCokernelViz';
 import { BasisExplorer } from '../visualizations/BasisExplorer';
 import { CoordinateViz } from '../visualizations/CoordinateViz';
 import { ChangeOfBasisViz } from '../visualizations/ChangeOfBasisViz';
+import { MatrixRepresentationViz } from '../visualizations/MatrixRepresentationViz';
+import { SimilarityViz } from '../visualizations/SimilarityViz';
+import { OrthogonalTransformViz } from '../visualizations/OrthogonalTransformViz';
 import type { Concept } from '../../content/types';
 
 const VIZ_REGISTRY: Record<string, React.FC> = {
@@ -61,6 +64,9 @@ const VIZ_REGISTRY: Record<string, React.FC> = {
   BasisExplorer,
   CoordinateViz,
   ChangeOfBasisViz,
+  MatrixRepresentationViz,
+  SimilarityViz,
+  OrthogonalTransformViz,
 };
 
 export function ExploreTab({ concept }: { concept: Concept }) {
