@@ -17,6 +17,9 @@ import { VectorSpaceExamplesViz } from '../visualizations/VectorSpaceExamplesViz
 import { SubspaceTester } from '../visualizations/SubspaceTester';
 import { SpanAndIndependenceViz } from '../visualizations/SpanAndIndependenceViz';
 import { DimensionViz } from '../visualizations/DimensionViz';
+import { FundamentalTheoremViz } from '../visualizations/FundamentalTheoremViz';
+import { LinearTransformGallery } from '../visualizations/LinearTransformGallery';
+import { RankNullityViz } from '../visualizations/RankNullityViz';
 import type { Concept } from '../../content/types';
 
 const VIZ_REGISTRY: Record<string, React.FC> = {
@@ -37,6 +40,9 @@ const VIZ_REGISTRY: Record<string, React.FC> = {
   SubspaceTester,
   SpanAndIndependenceViz,
   DimensionViz,
+  FundamentalTheoremViz,
+  LinearTransformGallery,
+  RankNullityViz,
 };
 
 export function ExploreTab({ concept }: { concept: Concept }) {
