@@ -23,6 +23,9 @@ import { RankNullityViz } from '../visualizations/RankNullityViz';
 import { EuclideanTransformViz } from '../visualizations/EuclideanTransformViz';
 import { InjectiveSurjectiveViz } from '../visualizations/InjectiveSurjectiveViz';
 import { KernelImageViz } from '../visualizations/KernelImageViz';
+import { LinearityChecker } from '../visualizations/LinearityChecker';
+import { QuotientViz } from '../visualizations/QuotientViz';
+import { CoimageCokernelViz } from '../visualizations/CoimageCokernelViz';
 import type { Concept } from '../../content/types';
 
 const VIZ_REGISTRY: Record<string, React.FC> = {
@@ -49,6 +52,9 @@ const VIZ_REGISTRY: Record<string, React.FC> = {
   EuclideanTransformViz,
   InjectiveSurjectiveViz,
   KernelImageViz,
+  LinearityChecker,
+  QuotientViz,
+  CoimageCokernelViz,
 };
 
 export function ExploreTab({ concept }: { concept: Concept }) {
