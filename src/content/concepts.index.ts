@@ -37,6 +37,15 @@ import { similarity } from './concepts/similarity';
 import { roboticKinematics } from './concepts/robotic-kinematics';
 import { computerGraphics } from './concepts/computer-graphics';
 import { dotAndInnerProducts } from './concepts/dot-and-inner-products';
+import { anglesAndOrthogonality } from './concepts/angles-and-orthogonality';
+import { orthonormalBases } from './concepts/orthonormal-bases';
+import { adjointsAndTransposes } from './concepts/adjoints-and-transposes';
+import { orthogonalTransformations } from './concepts/orthogonal-transformations';
+import { qrDecomposition } from './concepts/qr-decomposition';
+import { kMeans } from './concepts/k-means';
+import { imageSegmentation } from './concepts/image-segmentation';
+import { textEmbeddings } from './concepts/text-embeddings';
+import { quantumMeasurement } from './concepts/quantum-measurement';
 import { extractConceptBacklinks } from '../lib/parseBacklinks';
 
 export { UNITS, MANUAL_EDGES, EDGES };
@@ -81,6 +90,15 @@ const CONTENT_OVERRIDES: Record<string, Concept> = {
   'robotic-kinematics': roboticKinematics,
   'computer-graphics': computerGraphics,
   'dot-and-inner-products': dotAndInnerProducts,
+  'angles-and-orthogonality': anglesAndOrthogonality,
+  'orthonormal-bases': orthonormalBases,
+  'adjoints-and-transposes': adjointsAndTransposes,
+  'orthogonal-transformations': orthogonalTransformations,
+  'qr-decomposition': qrDecomposition,
+  'k-means': kMeans,
+  'image-segmentation': imageSegmentation,
+  'text-embeddings': textEmbeddings,
+  'quantum-measurement': quantumMeasurement,
 };
 
 export const CONCEPTS: Concept[] = CONCEPT_NODES.map((node): Concept => {
