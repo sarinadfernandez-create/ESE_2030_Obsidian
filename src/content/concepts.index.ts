@@ -54,6 +54,14 @@ import { higherOrderEquations } from './concepts/higher-order-equations';
 import { basisSolutions } from './concepts/basis-solutions';
 import { buildingTemperature } from './concepts/building-temperature';
 import { vehicleSuspension } from './concepts/vehicle-suspension';
+import { orthogonalComplements } from './concepts/orthogonal-complements';
+import { orthogonalProjections } from './concepts/orthogonal-projections';
+import { geometricFundamentalTheorem } from './concepts/geometric-fundamental-theorem';
+import { leastSquares } from './concepts/least-squares';
+import { regularizedLeastSquares } from './concepts/regularized-least-squares';
+import { signalProcessing } from './concepts/signal-processing';
+import { imageProcessing } from './concepts/image-processing';
+import { svm } from './concepts/svm';
 import { extractConceptBacklinks } from '../lib/parseBacklinks';
 
 export { UNITS, MANUAL_EDGES, EDGES };
@@ -115,6 +123,14 @@ const CONTENT_OVERRIDES: Record<string, Concept> = {
   'basis-solutions': basisSolutions,
   'building-temperature': buildingTemperature,
   'vehicle-suspension': vehicleSuspension,
+  'orthogonal-complements': orthogonalComplements,
+  'orthogonal-projections': orthogonalProjections,
+  'geometric-fundamental-theorem': geometricFundamentalTheorem,
+  'least-squares': leastSquares,
+  'regularized-least-squares': regularizedLeastSquares,
+  'signal-processing': signalProcessing,
+  'image-processing': imageProcessing,
+  svm,
 };
 
 export const CONCEPTS: Concept[] = CONCEPT_NODES.map((node): Concept => {
