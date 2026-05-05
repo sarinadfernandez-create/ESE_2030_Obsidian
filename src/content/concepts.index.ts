@@ -46,6 +46,14 @@ import { kMeans } from './concepts/k-means';
 import { imageSegmentation } from './concepts/image-segmentation';
 import { textEmbeddings } from './concepts/text-embeddings';
 import { quantumMeasurement } from './concepts/quantum-measurement';
+import { firstOrderSystems } from './concepts/first-order-systems';
+import { coupledSystems } from './concepts/coupled-systems';
+import { simpleDiagonalization } from './concepts/simple-diagonalization';
+import { matrixExponentials } from './concepts/matrix-exponentials';
+import { higherOrderEquations } from './concepts/higher-order-equations';
+import { basisSolutions } from './concepts/basis-solutions';
+import { buildingTemperature } from './concepts/building-temperature';
+import { vehicleSuspension } from './concepts/vehicle-suspension';
 import { extractConceptBacklinks } from '../lib/parseBacklinks';
 
 export { UNITS, MANUAL_EDGES, EDGES };
@@ -99,6 +107,14 @@ const CONTENT_OVERRIDES: Record<string, Concept> = {
   'image-segmentation': imageSegmentation,
   'text-embeddings': textEmbeddings,
   'quantum-measurement': quantumMeasurement,
+  'first-order-systems': firstOrderSystems,
+  'coupled-systems': coupledSystems,
+  'simple-diagonalization': simpleDiagonalization,
+  'matrix-exponentials': matrixExponentials,
+  'higher-order-equations': higherOrderEquations,
+  'basis-solutions': basisSolutions,
+  'building-temperature': buildingTemperature,
+  'vehicle-suspension': vehicleSuspension,
 };
 
 export const CONCEPTS: Concept[] = CONCEPT_NODES.map((node): Concept => {
