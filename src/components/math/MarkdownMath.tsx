@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
+import remarkGfm from 'remark-gfm';
 import rehypeKatex from 'rehype-katex';
 import rehypeRaw from 'rehype-raw';
 import { Link } from 'react-router-dom';
@@ -20,6 +21,50 @@ const baseComponents: Components = {
     <code style={{ fontFamily: 'var(--font-mono)', fontSize: '0.9em', color: 'var(--accent)' }}>
       {children}
     </code>
+  ),
+  table: ({ children }) => (
+    <div style={{ overflowX: 'auto', margin: '0.8em 0' }}>
+      <table
+        style={{
+          borderCollapse: 'collapse',
+          fontSize: '0.92em',
+          border: '1px solid var(--border-subtle)',
+          borderRadius: 4,
+        }}
+      >
+        {children}
+      </table>
+    </div>
+  ),
+  thead: ({ children }) => (
+    <thead style={{ background: 'var(--bg-elevated)' }}>{children}</thead>
+  ),
+  th: ({ children }) => (
+    <th
+      style={{
+        padding: '6px 12px',
+        textAlign: 'left',
+        fontFamily: 'var(--font-mono)',
+        fontSize: '0.85em',
+        color: 'var(--text-tertiary)',
+        textTransform: 'uppercase',
+        letterSpacing: '0.04em',
+        borderBottom: '1px solid var(--border-default)',
+      }}
+    >
+      {children}
+    </th>
+  ),
+  td: ({ children }) => (
+    <td
+      style={{
+        padding: '6px 12px',
+        borderBottom: '1px solid var(--border-subtle)',
+        color: 'var(--text-secondary)',
+      }}
+    >
+      {children}
+    </td>
   ),
   a: ({ href, children }) => {
     if (typeof href === 'string' && href.startsWith('#concept:')) {
@@ -95,7 +140,7 @@ export function MarkdownMath({ source, className }: Props) {
   return (
     <div className={className}>
       <ReactMarkdown
-        remarkPlugins={[remarkMath]}
+        remarkPlugins={[remarkMath, remarkGfm]}
         rehypePlugins={[rehypeKatex, rehypeRaw]}
         components={baseComponents}
       >

@@ -37,6 +37,8 @@ import { AnglesViz } from '../visualizations/AnglesViz';
 import { OrthonormalBasisViz } from '../visualizations/OrthonormalBasisViz';
 import { AdjointViz } from '../visualizations/AdjointViz';
 import { QRDecompositionViz } from '../visualizations/QRDecompositionViz';
+import { GeometricFTLAViz } from '../visualizations/GeometricFTLAViz';
+import { OrthogonalComplementViz } from '../visualizations/OrthogonalComplementViz';
 import type { Concept } from '../../content/types';
 
 const VIZ_REGISTRY: Record<string, React.FC> = {
@@ -77,6 +79,8 @@ const VIZ_REGISTRY: Record<string, React.FC> = {
   OrthonormalBasisViz,
   AdjointViz,
   QRDecompositionViz,
+  GeometricFTLAViz,
+  OrthogonalComplementViz,
 };
 
 export function ExploreTab({ concept }: { concept: Concept }) {
