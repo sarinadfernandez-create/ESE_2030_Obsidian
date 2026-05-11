@@ -62,6 +62,13 @@ import { regularizedLeastSquares } from './concepts/regularized-least-squares';
 import { signalProcessing } from './concepts/signal-processing';
 import { imageProcessing } from './concepts/image-processing';
 import { svm } from './concepts/svm';
+import { complexEigenvalues } from './concepts/complex-eigenvalues';
+import { repeatedEigenvalues } from './concepts/repeated-eigenvalues';
+import { jordanForm } from './concepts/jordan-form';
+import { findingJordanForm } from './concepts/finding-jordan-form';
+import { computingEigenvalues } from './concepts/computing-eigenvalues';
+import { powerGrid } from './concepts/power-grid';
+import { chemicalNetworks } from './concepts/chemical-networks';
 import { extractConceptBacklinks } from '../lib/parseBacklinks';
 
 export { UNITS, MANUAL_EDGES, EDGES };
@@ -131,6 +138,13 @@ const CONTENT_OVERRIDES: Record<string, Concept> = {
   'signal-processing': signalProcessing,
   'image-processing': imageProcessing,
   svm,
+  'complex-eigenvalues': complexEigenvalues,
+  'repeated-eigenvalues': repeatedEigenvalues,
+  'jordan-form': jordanForm,
+  'finding-jordan-form': findingJordanForm,
+  'computing-eigenvalues': computingEigenvalues,
+  'power-grid': powerGrid,
+  'chemical-networks': chemicalNetworks,
 };
 
 export const CONCEPTS: Concept[] = CONCEPT_NODES.map((node): Concept => {
