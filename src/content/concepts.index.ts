@@ -69,6 +69,35 @@ import { findingJordanForm } from './concepts/finding-jordan-form';
 import { computingEigenvalues } from './concepts/computing-eigenvalues';
 import { powerGrid } from './concepts/power-grid';
 import { chemicalNetworks } from './concepts/chemical-networks';
+import { iteration } from './concepts/iteration';
+import { dominanceConvergence } from './concepts/dominance-convergence';
+import { perronFrobenius } from './concepts/perron-frobenius';
+import { symmetricSpectra } from './concepts/symmetric-spectra';
+import { consensus } from './concepts/consensus';
+import { spectralGraphTheory } from './concepts/spectral-graph-theory';
+import { pagerank } from './concepts/pagerank';
+import { spheresEllipsoids } from './concepts/spheres-ellipsoids';
+import { polarDecomposition } from './concepts/polar-decomposition';
+import { svdForm } from './concepts/svd-form';
+import { svdInvariance } from './concepts/svd-invariance';
+import { latentSemanticAnalysis } from './concepts/latent-semantic-analysis';
+import { sensorNetworks } from './concepts/sensor-networks';
+import { tensors } from './concepts/tensors';
+import { covariance } from './concepts/covariance';
+import { principalComponents } from './concepts/principal-components';
+import { pcaOptimality } from './concepts/pca-optimality';
+import { pcaPreprocessing } from './concepts/pca-preprocessing';
+import { statisticalSignificance } from './concepts/statistical-significance';
+import { beyondLinearPca } from './concepts/beyond-linear-pca';
+import { neuralDecoding } from './concepts/neural-decoding';
+import { eigenfaces } from './concepts/eigenfaces';
+import { optimalLowRank } from './concepts/optimal-low-rank';
+import { lowRankInPractice } from './concepts/low-rank-in-practice';
+import { scalingAlgorithms } from './concepts/scaling-algorithms';
+import { matrixCompletion } from './concepts/matrix-completion';
+import { robustFactorization } from './concepts/robust-factorization';
+import { netflixPrize } from './concepts/netflix-prize';
+import { anomalyDetection } from './concepts/anomaly-detection';
 import { extractConceptBacklinks } from '../lib/parseBacklinks';
 
 export { UNITS, MANUAL_EDGES, EDGES };
@@ -145,6 +174,35 @@ const CONTENT_OVERRIDES: Record<string, Concept> = {
   'computing-eigenvalues': computingEigenvalues,
   'power-grid': powerGrid,
   'chemical-networks': chemicalNetworks,
+  iteration,
+  'dominance-convergence': dominanceConvergence,
+  'perron-frobenius': perronFrobenius,
+  'symmetric-spectra': symmetricSpectra,
+  consensus,
+  'spectral-graph-theory': spectralGraphTheory,
+  pagerank,
+  'spheres-ellipsoids': spheresEllipsoids,
+  'polar-decomposition': polarDecomposition,
+  'svd-form': svdForm,
+  'svd-invariance': svdInvariance,
+  'latent-semantic-analysis': latentSemanticAnalysis,
+  'sensor-networks': sensorNetworks,
+  tensors,
+  covariance,
+  'principal-components': principalComponents,
+  'pca-optimality': pcaOptimality,
+  'pca-preprocessing': pcaPreprocessing,
+  'statistical-significance': statisticalSignificance,
+  'beyond-linear-pca': beyondLinearPca,
+  'neural-decoding': neuralDecoding,
+  eigenfaces,
+  'optimal-low-rank': optimalLowRank,
+  'low-rank-in-practice': lowRankInPractice,
+  'scaling-algorithms': scalingAlgorithms,
+  'matrix-completion': matrixCompletion,
+  'robust-factorization': robustFactorization,
+  'netflix-prize': netflixPrize,
+  'anomaly-detection': anomalyDetection,
 };
 
 export const CONCEPTS: Concept[] = CONCEPT_NODES.map((node): Concept => {

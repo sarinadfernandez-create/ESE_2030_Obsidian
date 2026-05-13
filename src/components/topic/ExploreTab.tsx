@@ -39,6 +39,26 @@ import { AdjointViz } from '../visualizations/AdjointViz';
 import { QRDecompositionViz } from '../visualizations/QRDecompositionViz';
 import { GeometricFTLAViz } from '../visualizations/GeometricFTLAViz';
 import { OrthogonalComplementViz } from '../visualizations/OrthogonalComplementViz';
+import { IterationViz } from '../visualizations/IterationViz';
+import { DominanceConvergenceViz } from '../visualizations/DominanceConvergenceViz';
+import { PerronFrobeniusViz } from '../visualizations/PerronFrobeniusViz';
+import { SymmetricSpectraViz } from '../visualizations/SymmetricSpectraViz';
+import { ConsensusViz } from '../visualizations/ConsensusViz';
+import { SphereToEllipsoidViz } from '../visualizations/SphereToEllipsoidViz';
+import { PolarDecompositionViz } from '../visualizations/PolarDecompositionViz';
+import { SVDStructureViz } from '../visualizations/SVDStructureViz';
+import { SVDInvarianceViz } from '../visualizations/SVDInvarianceViz';
+import { CovarianceCorrelationViz } from '../visualizations/CovarianceCorrelationViz';
+import { PrincipalComponentsViz } from '../visualizations/PrincipalComponentsViz';
+import { PcaOptimalityViz } from '../visualizations/PcaOptimalityViz';
+import { PcaPreprocessingViz } from '../visualizations/PcaPreprocessingViz';
+import { StatisticalSignificanceViz } from '../visualizations/StatisticalSignificanceViz';
+import { BeyondLinearPcaViz } from '../visualizations/BeyondLinearPcaViz';
+import { EckartMirskyYoungViz } from '../visualizations/EckartMirskyYoungViz';
+import { LowRankInPracticeViz } from '../visualizations/LowRankInPracticeViz';
+import { ScalingAlgorithmsViz } from '../visualizations/ScalingAlgorithmsViz';
+import { MatrixCompletionViz } from '../visualizations/MatrixCompletionViz';
+import { RobustPCAViz } from '../visualizations/RobustPCAViz';
 import type { Concept } from '../../content/types';
 
 const VIZ_REGISTRY: Record<string, React.FC> = {
@@ -81,6 +101,26 @@ const VIZ_REGISTRY: Record<string, React.FC> = {
   QRDecompositionViz,
   GeometricFTLAViz,
   OrthogonalComplementViz,
+  IterationViz,
+  DominanceConvergenceViz,
+  PerronFrobeniusViz,
+  SymmetricSpectraViz,
+  ConsensusViz,
+  SphereToEllipsoidViz,
+  PolarDecompositionViz,
+  SVDStructureViz,
+  SVDInvarianceViz,
+  CovarianceCorrelationViz,
+  PrincipalComponentsViz,
+  PcaOptimalityViz,
+  PcaPreprocessingViz,
+  StatisticalSignificanceViz,
+  BeyondLinearPcaViz,
+  EckartMirskyYoungViz,
+  LowRankInPracticeViz,
+  ScalingAlgorithmsViz,
+  MatrixCompletionViz,
+  RobustPCAViz,
 };
 
 export function ExploreTab({ concept }: { concept: Concept }) {
