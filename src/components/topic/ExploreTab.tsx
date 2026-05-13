@@ -39,6 +39,11 @@ import { AdjointViz } from '../visualizations/AdjointViz';
 import { QRDecompositionViz } from '../visualizations/QRDecompositionViz';
 import { GeometricFTLAViz } from '../visualizations/GeometricFTLAViz';
 import { OrthogonalComplementViz } from '../visualizations/OrthogonalComplementViz';
+import { IterationViz } from '../visualizations/IterationViz';
+import { DominanceConvergenceViz } from '../visualizations/DominanceConvergenceViz';
+import { PerronFrobeniusViz } from '../visualizations/PerronFrobeniusViz';
+import { SymmetricSpectraViz } from '../visualizations/SymmetricSpectraViz';
+import { ConsensusViz } from '../visualizations/ConsensusViz';
 import type { Concept } from '../../content/types';
 
 const VIZ_REGISTRY: Record<string, React.FC> = {
@@ -81,6 +86,11 @@ const VIZ_REGISTRY: Record<string, React.FC> = {
   QRDecompositionViz,
   GeometricFTLAViz,
   OrthogonalComplementViz,
+  IterationViz,
+  DominanceConvergenceViz,
+  PerronFrobeniusViz,
+  SymmetricSpectraViz,
+  ConsensusViz,
 };
 
 export function ExploreTab({ concept }: { concept: Concept }) {

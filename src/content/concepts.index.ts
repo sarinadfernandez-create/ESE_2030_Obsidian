@@ -69,6 +69,13 @@ import { findingJordanForm } from './concepts/finding-jordan-form';
 import { computingEigenvalues } from './concepts/computing-eigenvalues';
 import { powerGrid } from './concepts/power-grid';
 import { chemicalNetworks } from './concepts/chemical-networks';
+import { iteration } from './concepts/iteration';
+import { dominanceConvergence } from './concepts/dominance-convergence';
+import { perronFrobenius } from './concepts/perron-frobenius';
+import { symmetricSpectra } from './concepts/symmetric-spectra';
+import { consensus } from './concepts/consensus';
+import { spectralGraphTheory } from './concepts/spectral-graph-theory';
+import { pagerank } from './concepts/pagerank';
 import { extractConceptBacklinks } from '../lib/parseBacklinks';
 
 export { UNITS, MANUAL_EDGES, EDGES };
@@ -145,6 +152,13 @@ const CONTENT_OVERRIDES: Record<string, Concept> = {
   'computing-eigenvalues': computingEigenvalues,
   'power-grid': powerGrid,
   'chemical-networks': chemicalNetworks,
+  iteration,
+  'dominance-convergence': dominanceConvergence,
+  'perron-frobenius': perronFrobenius,
+  'symmetric-spectra': symmetricSpectra,
+  consensus,
+  'spectral-graph-theory': spectralGraphTheory,
+  pagerank,
 };
 
 export const CONCEPTS: Concept[] = CONCEPT_NODES.map((node): Concept => {
