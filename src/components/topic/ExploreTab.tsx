@@ -48,6 +48,12 @@ import { SphereToEllipsoidViz } from '../visualizations/SphereToEllipsoidViz';
 import { PolarDecompositionViz } from '../visualizations/PolarDecompositionViz';
 import { SVDStructureViz } from '../visualizations/SVDStructureViz';
 import { SVDInvarianceViz } from '../visualizations/SVDInvarianceViz';
+import { CovarianceCorrelationViz } from '../visualizations/CovarianceCorrelationViz';
+import { PrincipalComponentsViz } from '../visualizations/PrincipalComponentsViz';
+import { PcaOptimalityViz } from '../visualizations/PcaOptimalityViz';
+import { PcaPreprocessingViz } from '../visualizations/PcaPreprocessingViz';
+import { StatisticalSignificanceViz } from '../visualizations/StatisticalSignificanceViz';
+import { BeyondLinearPcaViz } from '../visualizations/BeyondLinearPcaViz';
 import type { Concept } from '../../content/types';
 
 const VIZ_REGISTRY: Record<string, React.FC> = {
@@ -99,6 +105,12 @@ const VIZ_REGISTRY: Record<string, React.FC> = {
   PolarDecompositionViz,
   SVDStructureViz,
   SVDInvarianceViz,
+  CovarianceCorrelationViz,
+  PrincipalComponentsViz,
+  PcaOptimalityViz,
+  PcaPreprocessingViz,
+  StatisticalSignificanceViz,
+  BeyondLinearPcaViz,
 };
 
 export function ExploreTab({ concept }: { concept: Concept }) {

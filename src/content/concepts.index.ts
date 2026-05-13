@@ -83,6 +83,14 @@ import { svdInvariance } from './concepts/svd-invariance';
 import { latentSemanticAnalysis } from './concepts/latent-semantic-analysis';
 import { sensorNetworks } from './concepts/sensor-networks';
 import { tensors } from './concepts/tensors';
+import { covariance } from './concepts/covariance';
+import { principalComponents } from './concepts/principal-components';
+import { pcaOptimality } from './concepts/pca-optimality';
+import { pcaPreprocessing } from './concepts/pca-preprocessing';
+import { statisticalSignificance } from './concepts/statistical-significance';
+import { beyondLinearPca } from './concepts/beyond-linear-pca';
+import { neuralDecoding } from './concepts/neural-decoding';
+import { eigenfaces } from './concepts/eigenfaces';
 import { extractConceptBacklinks } from '../lib/parseBacklinks';
 
 export { UNITS, MANUAL_EDGES, EDGES };
@@ -173,6 +181,14 @@ const CONTENT_OVERRIDES: Record<string, Concept> = {
   'latent-semantic-analysis': latentSemanticAnalysis,
   'sensor-networks': sensorNetworks,
   tensors,
+  covariance,
+  'principal-components': principalComponents,
+  'pca-optimality': pcaOptimality,
+  'pca-preprocessing': pcaPreprocessing,
+  'statistical-significance': statisticalSignificance,
+  'beyond-linear-pca': beyondLinearPca,
+  'neural-decoding': neuralDecoding,
+  eigenfaces,
 };
 
 export const CONCEPTS: Concept[] = CONCEPT_NODES.map((node): Concept => {
