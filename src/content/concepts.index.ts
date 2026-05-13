@@ -91,6 +91,13 @@ import { statisticalSignificance } from './concepts/statistical-significance';
 import { beyondLinearPca } from './concepts/beyond-linear-pca';
 import { neuralDecoding } from './concepts/neural-decoding';
 import { eigenfaces } from './concepts/eigenfaces';
+import { optimalLowRank } from './concepts/optimal-low-rank';
+import { lowRankInPractice } from './concepts/low-rank-in-practice';
+import { scalingAlgorithms } from './concepts/scaling-algorithms';
+import { matrixCompletion } from './concepts/matrix-completion';
+import { robustFactorization } from './concepts/robust-factorization';
+import { netflixPrize } from './concepts/netflix-prize';
+import { anomalyDetection } from './concepts/anomaly-detection';
 import { extractConceptBacklinks } from '../lib/parseBacklinks';
 
 export { UNITS, MANUAL_EDGES, EDGES };
@@ -189,6 +196,13 @@ const CONTENT_OVERRIDES: Record<string, Concept> = {
   'beyond-linear-pca': beyondLinearPca,
   'neural-decoding': neuralDecoding,
   eigenfaces,
+  'optimal-low-rank': optimalLowRank,
+  'low-rank-in-practice': lowRankInPractice,
+  'scaling-algorithms': scalingAlgorithms,
+  'matrix-completion': matrixCompletion,
+  'robust-factorization': robustFactorization,
+  'netflix-prize': netflixPrize,
+  'anomaly-detection': anomalyDetection,
 };
 
 export const CONCEPTS: Concept[] = CONCEPT_NODES.map((node): Concept => {

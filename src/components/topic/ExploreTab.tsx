@@ -54,6 +54,11 @@ import { PcaOptimalityViz } from '../visualizations/PcaOptimalityViz';
 import { PcaPreprocessingViz } from '../visualizations/PcaPreprocessingViz';
 import { StatisticalSignificanceViz } from '../visualizations/StatisticalSignificanceViz';
 import { BeyondLinearPcaViz } from '../visualizations/BeyondLinearPcaViz';
+import { EckartMirskyYoungViz } from '../visualizations/EckartMirskyYoungViz';
+import { LowRankInPracticeViz } from '../visualizations/LowRankInPracticeViz';
+import { ScalingAlgorithmsViz } from '../visualizations/ScalingAlgorithmsViz';
+import { MatrixCompletionViz } from '../visualizations/MatrixCompletionViz';
+import { RobustPCAViz } from '../visualizations/RobustPCAViz';
 import type { Concept } from '../../content/types';
 
 const VIZ_REGISTRY: Record<string, React.FC> = {
@@ -111,6 +116,11 @@ const VIZ_REGISTRY: Record<string, React.FC> = {
   PcaPreprocessingViz,
   StatisticalSignificanceViz,
   BeyondLinearPcaViz,
+  EckartMirskyYoungViz,
+  LowRankInPracticeViz,
+  ScalingAlgorithmsViz,
+  MatrixCompletionViz,
+  RobustPCAViz,
 };
 
 export function ExploreTab({ concept }: { concept: Concept }) {
