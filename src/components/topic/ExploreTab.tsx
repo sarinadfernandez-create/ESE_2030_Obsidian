@@ -44,6 +44,10 @@ import { DominanceConvergenceViz } from '../visualizations/DominanceConvergenceV
 import { PerronFrobeniusViz } from '../visualizations/PerronFrobeniusViz';
 import { SymmetricSpectraViz } from '../visualizations/SymmetricSpectraViz';
 import { ConsensusViz } from '../visualizations/ConsensusViz';
+import { SphereToEllipsoidViz } from '../visualizations/SphereToEllipsoidViz';
+import { PolarDecompositionViz } from '../visualizations/PolarDecompositionViz';
+import { SVDStructureViz } from '../visualizations/SVDStructureViz';
+import { SVDInvarianceViz } from '../visualizations/SVDInvarianceViz';
 import type { Concept } from '../../content/types';
 
 const VIZ_REGISTRY: Record<string, React.FC> = {
@@ -91,6 +95,10 @@ const VIZ_REGISTRY: Record<string, React.FC> = {
   PerronFrobeniusViz,
   SymmetricSpectraViz,
   ConsensusViz,
+  SphereToEllipsoidViz,
+  PolarDecompositionViz,
+  SVDStructureViz,
+  SVDInvarianceViz,
 };
 
 export function ExploreTab({ concept }: { concept: Concept }) {

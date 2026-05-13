@@ -76,6 +76,13 @@ import { symmetricSpectra } from './concepts/symmetric-spectra';
 import { consensus } from './concepts/consensus';
 import { spectralGraphTheory } from './concepts/spectral-graph-theory';
 import { pagerank } from './concepts/pagerank';
+import { spheresEllipsoids } from './concepts/spheres-ellipsoids';
+import { polarDecomposition } from './concepts/polar-decomposition';
+import { svdForm } from './concepts/svd-form';
+import { svdInvariance } from './concepts/svd-invariance';
+import { latentSemanticAnalysis } from './concepts/latent-semantic-analysis';
+import { sensorNetworks } from './concepts/sensor-networks';
+import { tensors } from './concepts/tensors';
 import { extractConceptBacklinks } from '../lib/parseBacklinks';
 
 export { UNITS, MANUAL_EDGES, EDGES };
@@ -159,6 +166,13 @@ const CONTENT_OVERRIDES: Record<string, Concept> = {
   consensus,
   'spectral-graph-theory': spectralGraphTheory,
   pagerank,
+  'spheres-ellipsoids': spheresEllipsoids,
+  'polar-decomposition': polarDecomposition,
+  'svd-form': svdForm,
+  'svd-invariance': svdInvariance,
+  'latent-semantic-analysis': latentSemanticAnalysis,
+  'sensor-networks': sensorNetworks,
+  tensors,
 };
 
 export const CONCEPTS: Concept[] = CONCEPT_NODES.map((node): Concept => {
