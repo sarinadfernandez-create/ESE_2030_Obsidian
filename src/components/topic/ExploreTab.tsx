@@ -59,6 +59,11 @@ import { LowRankInPracticeViz } from '../visualizations/LowRankInPracticeViz';
 import { ScalingAlgorithmsViz } from '../visualizations/ScalingAlgorithmsViz';
 import { MatrixCompletionViz } from '../visualizations/MatrixCompletionViz';
 import { RobustPCAViz } from '../visualizations/RobustPCAViz';
+import { ComplexEigenvalueViz } from '../visualizations/ComplexEigenvalueViz';
+import { RepeatedEigenvalueViz } from '../visualizations/RepeatedEigenvalueViz';
+import { JordanFormViz } from '../visualizations/JordanFormViz';
+import { IteratedKernelViz } from '../visualizations/IteratedKernelViz';
+import { QRAlgorithmViz } from '../visualizations/QRAlgorithmViz';
 import type { Concept } from '../../content/types';
 
 const VIZ_REGISTRY: Record<string, React.FC> = {
@@ -121,6 +126,11 @@ const VIZ_REGISTRY: Record<string, React.FC> = {
   ScalingAlgorithmsViz,
   MatrixCompletionViz,
   RobustPCAViz,
+  ComplexEigenvalueViz,
+  RepeatedEigenvalueViz,
+  JordanFormViz,
+  IteratedKernelViz,
+  QRAlgorithmViz,
 };
 
 export function ExploreTab({ concept }: { concept: Concept }) {
